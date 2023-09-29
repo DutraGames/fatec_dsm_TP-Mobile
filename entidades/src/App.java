@@ -175,7 +175,7 @@ public class App {
 
         // Arte Digital
         
-        ArteDigital arteDigital = new ArteDigital();
+/*         ArteDigital arteDigital = new ArteDigital();
 
         System.out.print("Autor: ");
         arteDigital.autor = input.next();
@@ -186,6 +186,19 @@ public class App {
 
         arteDigital.expressar();
 
+ */
 
+        // Filme
+
+        Filme filme = new Filme();
+
+        System.out.print("Diretor: ");
+        filme.diretor = input.next();
+        System.out.print("Elenco: ");
+        filme.elenco = input.next();
+        System.out.print("Tiulo: ");
+        filme.titulo = input.next();
+
+        filme.exibir();
     }
 }
