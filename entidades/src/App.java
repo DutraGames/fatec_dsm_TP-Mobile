@@ -81,7 +81,7 @@ public class App {
 
         //Genética
 
-        Genetica genes = new Genetica();
+        /* Genetica genes = new Genetica();
 
         System.out.print("DNA: ");
         genes.dna = input.next();
@@ -93,6 +93,17 @@ public class App {
         System.out.println("Após herdar, o bebe é: ");
 
         genes.definirCaracteristicas();
-        
+         */
+
+        Pintura pintura = new Pintura();
+
+        System.out.print("Autor: ");
+        pintura.autor = input.next();
+        System.out.print("Tipo de pintura: ");
+        pintura.tipoPintura = input.next();
+        System.out.print("Cor: ");
+        pintura.cor = input.next();
+
+        pintura.expressar();
     }
 }
