@@ -163,7 +163,7 @@ public class App {
 
         //Idade Média
 
-        IdadeMedia idadeMedia = new IdadeMedia();
+/*         IdadeMedia idadeMedia = new IdadeMedia();
 
         System.out.print("Duracao: ");
         idadeMedia.duracao = input.nextInt();
@@ -171,8 +171,20 @@ public class App {
         idadeMedia.pesteNegra = input.nextBoolean();
         System.out.print("Feudalismo: ");
         idadeMedia.feudalismo = input.nextBoolean();
+ */
 
+        // Arte Digital
         
+        ArteDigital arteDigital = new ArteDigital();
+
+        System.out.print("Autor: ");
+        arteDigital.autor = input.next();
+        System.out.print("Tamanho: ");
+        arteDigital.tamanho = input.nextFloat();
+        System.out.print("Formato: ");
+        arteDigital.formato = input.next();
+
+        arteDigital.expressar();
 
 
     }
