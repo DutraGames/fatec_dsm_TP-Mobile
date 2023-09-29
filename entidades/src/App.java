@@ -149,7 +149,7 @@ public class App {
 
         // Plamta
 
-        Planta planta = new Planta();
+        /* Planta planta = new Planta();
 
         System.out.print("Cor: ");
         planta.cor = input.next();
@@ -159,6 +159,20 @@ public class App {
         planta.regiao = input.next();
 
         System.out.println(planta.gerarOxigenio());
+        */
+
+        //Idade Média
+
+        IdadeMedia idadeMedia = new IdadeMedia();
+
+        System.out.print("Duracao: ");
+        idadeMedia.duracao = input.nextInt();
+        System.out.print("Peste Negra: ");
+        idadeMedia.pesteNegra = input.nextBoolean();
+        System.out.print("Feudalismo: ");
+        idadeMedia.feudalismo = input.nextBoolean();
+
+        
 
 
     }
