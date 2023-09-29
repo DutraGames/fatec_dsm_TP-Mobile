@@ -45,7 +45,7 @@ public class App {
  */
 
         // Thor
-        Thor thor = new Thor();
+        /* Thor thor = new Thor();
 
         System.out.print("Ele é deus? (s/n) ");
         String verdade = input.next();
@@ -77,7 +77,22 @@ public class App {
         }
 
         thor.voar();
-        thor.invocarRaio();
+        thor.invocarRaio(); */
+
+        //Genética
+
+        Genetica genes = new Genetica();
+
+        System.out.print("DNA: ");
+        genes.dna = input.next();
+        System.out.print("Cromossomo: ");
+        genes.cromossomo = input.next();
+
+        genes.herdar();
+        
+        System.out.println("Após herdar, o bebe é: ");
+
+        genes.definirCaracteristicas();
         
     }
 }
