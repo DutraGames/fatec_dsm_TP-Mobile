@@ -99,6 +99,8 @@ public class App {
          * genes.definirCaracteristicas();
          */
 
+        // Pintura
+
         /*
          * Pintura pintura = new Pintura();
          * 
@@ -112,7 +114,9 @@ public class App {
          * pintura.expressar();
          */
 
-        Celula celula = new Celula();
+         // Celula
+
+/*         Celula celula = new Celula();
 
         System.out.print("Nucleo? (s/n) ");
         String verdade = input.next();
@@ -141,6 +145,21 @@ public class App {
             celula.cancerigena = false;
         }
 
-        celula.reproduzir();
+        celula.reproduzir(); */
+
+        // Plamta
+
+        Planta planta = new Planta();
+
+        System.out.print("Cor: ");
+        planta.cor = input.next();
+        System.out.print("Especie: ");
+        planta.especie = input.next();
+        System.out.print("Regiao: ");
+        planta.regiao = input.next();
+
+        System.out.println(planta.gerarOxigenio());
+
+
     }
 }
