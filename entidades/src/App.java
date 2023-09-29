@@ -28,7 +28,7 @@ public class App {
  */
 
         // Aplicativo
-
+/* 
         Aplicativo app = new Aplicativo();
 
         System.out.print("Nome: ");
@@ -42,7 +42,42 @@ public class App {
         System.out.println("O aplicativo " + app.nome + " foi aberto!");
 
         app.armazenarDados();
+ */
 
+        // Thor
+        Thor thor = new Thor();
+
+        System.out.print("Ele é deus? (s/n) ");
+        String verdade = input.next();
+
+        if (verdade.equals("s")) {
+            thor.deus = true;
+        } else if (verdade.equals("n")) {
+            thor.deus = false;
+        }
+
+        System.out.print("Ele tem martelo? ");
+        verdade = input.next();
+
+        if (verdade.equals("s")) {
+            thor.martelo = true;
+        }
+        else if (verdade.equals("n")) {
+            thor.martelo = false;
+        }
+
+        System.out.print("Ele é forte? ");
+        verdade = input.next();
+
+        if (verdade.equals("s")) {
+            thor.forte = true;
+        }
+        else if (verdade.equals("n")) {
+            thor.forte = false;
+        }
+
+        thor.voar();
+        thor.invocarRaio();
         
     }
 }
