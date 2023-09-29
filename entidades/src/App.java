@@ -4,9 +4,12 @@ import java.util.Random;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        Professor professor = new Professor();
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
+        
+        // Professor
+/* 
+        Professor professor = new Professor();
 
         System.out.print("Nome: ");
         professor.nome = input.next();
@@ -22,8 +25,24 @@ public class App {
         int nota2 = rand.nextInt(10);
         int nota3 = rand.nextInt(10);
         System.out.println("Sua media foi de: " + professor.avaliar(nota1, nota2, nota3));
+ */
 
-        
+        // Aplicativo
+
+        Aplicativo app = new Aplicativo();
+
+        System.out.print("Nome: ");
+        app.nome = input.next();
+        System.out.print("Interfaces: ");
+        app.interfaces = input.next();
+        System.out.print("Linguagem: ");
+        app.linguagem = input.next();
+
+        app.abrir();
+        System.out.println("O aplicativo " + app.nome + " foi aberto!");
+
+        app.armazenarDados();
+
         
     }
 }
