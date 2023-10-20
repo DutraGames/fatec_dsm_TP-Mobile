@@ -7,9 +7,24 @@ public class Principal {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
-        Carro fiat = new Carro("Fiat", "Palio", 1999, 1.6, 50);
+        System.out.println("Seja bem vindo ao sistema de automóvel!");
 
-        fiat.girarChave();
+        System.out.print("Qual a marca do veiculo que deseja? ");
+        String marca = scanner.next();
+
+        System.out.print("Qual o modelo do veiculo que deseja? ");
+        String modelo = scanner.next();
+
+        System.out.print("Qual o ano do veiculo que deseja? ");
+        int ano = scanner.nextInt();
+
+        System.out.print("Qual a potencia do motor do veiculo que deseja? ");
+        double motor = scanner.nextDouble();
+
+        System.out.print("Quantos litros de gasolina cabem no tangue do veiculo que deseja? ");
+        double quantidadeTangue = scanner.nextDouble();
+
+        Carro car = new Carro(marca, modelo, ano, motor, quantidadeTangue);
 
         System.out.print("Deseja abastecer? (s/n) ");
         String abastecer = scanner.next();
@@ -21,7 +36,7 @@ public class Principal {
         if (abastecer.equals("s")) {
             System.out.print("Quantos litros de gasolina deseja adicionar? ");
             double gasolina = scanner.nextDouble();
-            fiat.adicionarGasolina(gasolina);
+            car.adicionarGasolina(gasolina);
 
             System.out.print("Deseja Ligar o Carro? (s/n) ");
             String ligar = scanner.next();
@@ -32,7 +47,7 @@ public class Principal {
 
             if (ligar.equals("s")) {
 
-                fiat.girarChave();
+                car.girarChave();
 
                 System.out.print("Deseja acelerar o Carro? (s/n) ");
                 String acelerar = scanner.next();
@@ -42,11 +57,11 @@ public class Principal {
                 }
 
                 if (acelerar.equals("s")) {
-                    fiat.acelerar();
+                    car.acelerar();
 
-                    System.out.println("O carro acelerou. " + fiat.getVelocidade());
+                    System.out.println("O carro acelerou. " + car.getVelocidade());
 
-                    while (fiat.getVelocidade() > 0) {
+                    while (car.getVelocidade() > 0) {
                         System.out.println("1- Frear");
                         System.out.println("2- Acelerar");
                         System.out.println("3- Desligar");
@@ -56,20 +71,20 @@ public class Principal {
 
                         switch (opcao) {
                             case 1:
-                                fiat.frear();
-                                if(fiat.getVelocidade() <= 0){
+                                car.frear();
+                                if (car.getVelocidade() <= 0) {
                                     System.out.println("O carro está parado..");
                                     break;
-                                }else{
-                                    System.out.println("O carro freou. " + fiat.getVelocidade());
+                                } else {
+                                    System.out.println("O carro freou. " + car.getVelocidade());
                                     break;
                                 }
                             case 2:
-                                fiat.acelerar();
-                                System.out.println("O carro acelerou. " + fiat.getVelocidade());
+                                car.acelerar();
+                                System.out.println("O carro acelerou. " + car.getVelocidade());
                                 break;
                             case 3:
-                                fiat.girarChave();
+                                car.girarChave();
                                 break;
                         }
 
