@@ -32,6 +32,7 @@ public class Carro {
         else if (this.motor > 0 && this.ligado && this.gasolinaTanque > 0) {
 
             this.ligado = false;
+            this.velocidade = 0;
             System.out.println("Carro desligou...");
 
         }
@@ -50,7 +51,7 @@ public class Carro {
     }
 
     public double acelerar() {
-		if(this.ligado && this.gasolinaTanque > 0) {
+		if(this.ligado && this.gasolinaTanque > 0 && this.velocidade < 180) {
 		
 			this.velocidade += 20;
 			this.removerGasolina();
@@ -62,6 +63,10 @@ public class Carro {
 			this.gasolinaTanque = 0;
 			System.out.println("Carro morreu...");
 		}
+        else if(ligado && this.velocidade >= 180){
+            this.velocidade = 180;
+            System.out.println("Carro já está no limite de velocidade");
+        }
 	
 		return 0;
 	}
@@ -69,7 +74,7 @@ public class Carro {
     public double frear() {
         if (this.ligado && this.velocidade > 0) {
 
-            this.velocidade += 20;
+            this.velocidade -= 20;
             return this.velocidade;
 
         }
@@ -138,6 +143,10 @@ public class Carro {
 
     public void setQuantidadeTangue(double quantidadeTangue) {
         this.quantidadeTangue = quantidadeTangue;
+    }
+
+    public double getGasolinaTanque() {
+        return gasolinaTanque;
     }
 
 }
