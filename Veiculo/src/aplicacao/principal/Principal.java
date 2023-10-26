@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Principal {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        float valorGasolina = 4.89f;
 
         System.out.println("Seja bem vindo ao sistema de automóvel!");
 
@@ -36,7 +37,7 @@ public class Principal {
         if (abastecer.equals("s")) {
             System.out.print("Quantos litros de gasolina deseja adicionar? ");
             double gasolina = scanner.nextDouble();
-            car.adicionarGasolina(gasolina);
+            car.adicionarGasolina(gasolina, valorGasolina);
 
             System.out.print("Deseja Ligar o Carro? (s/n) ");
             String ligar = scanner.next();

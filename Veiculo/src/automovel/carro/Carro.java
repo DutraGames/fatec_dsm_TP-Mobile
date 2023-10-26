@@ -51,25 +51,24 @@ public class Carro {
     }
 
     public double acelerar() {
-		if(this.ligado && this.gasolinaTanque > 0 && this.velocidade < 180) {
-		
-			this.velocidade += 20;
-			this.removerGasolina();
-			return this.velocidade;
-			
-		}else if(ligado){
-			this.velocidade = 0;
-			this.ligado = false;
-			this.gasolinaTanque = 0;
-			System.out.println("Carro morreu...");
-		}
-        else if(ligado && this.velocidade >= 180){
+        if (this.ligado && this.gasolinaTanque > 0 && this.velocidade < 180) {
+
+            this.velocidade += 20;
+            this.removerGasolina();
+            return this.velocidade;
+
+        } else if (ligado) {
+            this.velocidade = 0;
+            this.ligado = false;
+            this.gasolinaTanque = 0;
+            System.out.println("Carro morreu...");
+        } else if (ligado && this.velocidade >= 180) {
             this.velocidade = 180;
             System.out.println("Carro já está no limite de velocidade");
         }
-	
-		return 0;
-	}
+
+        return 0;
+    }
 
     public double frear() {
         if (this.ligado && this.velocidade > 0) {
@@ -82,19 +81,30 @@ public class Carro {
         return 0;
     }
 
-    public double adicionarGasolina(double gasosa) {
-        if (this.gasolinaTanque < this.quantidadeTangue) {
-            this.gasolinaTanque += gasosa;
-            return this.gasolinaTanque;
-        } else {
-            System.out.println("Tangue j� est� cheio!");
+    public double adicionarGasolina(double gasosa, float valor) {
+
+        if (gasosa <= this.quantidadeTangue && this.gasolinaTanque > 0) {
+            if (this.gasolinaTanque < this.quantidadeTangue) {
+                this.gasolinaTanque += gasosa;
+            System.out.println("você gastou " + (valor * gasosa) + " reais");
+                return this.gasolinaTanque;
+            } else {
+                System.out.println("Tangue ja esta cheio!");
+                return this.gasolinaTanque;
+            }
+        }else{
+            System.out.println("Quantidade de gasolina insuficiente!");
             return this.gasolinaTanque;
         }
     }
 
     public double removerGasolina() {
-        this.gasolinaTanque -= 10;
+        if(this.gasolinaTanque > 0){
+            this.gasolinaTanque -= 10;
         return this.gasolinaTanque;
+        }else{
+            return this.gasolinaTanque;
+        }
     }
 
     public double getVelocidade() {
