@@ -83,10 +83,10 @@ public class Carro {
 
     public double adicionarGasolina(double gasosa, float valor) {
 
-        if (gasosa <= this.quantidadeTangue && this.gasolinaTanque > 0) {
+        if (gasosa <= this.quantidadeTangue && gasosa > 0) {
             if (this.gasolinaTanque < this.quantidadeTangue) {
                 this.gasolinaTanque += gasosa;
-            System.out.println("você gastou " + (valor * gasosa) + " reais");
+            System.out.println("você gastou " +  + " reais");
                 return this.gasolinaTanque;
             } else {
                 System.out.println("Tangue ja esta cheio!");
