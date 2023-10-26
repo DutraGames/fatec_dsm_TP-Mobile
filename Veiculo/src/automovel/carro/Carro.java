@@ -86,7 +86,7 @@ public class Carro {
         if (gasosa <= this.quantidadeTangue && gasosa > 0) {
             if (this.gasolinaTanque < this.quantidadeTangue) {
                 this.gasolinaTanque += gasosa;
-            System.out.println("você gastou " +  + " reais");
+            System.out.println("você gastou " + (valor * gasosa) + " reais");
                 return this.gasolinaTanque;
             } else {
                 System.out.println("Tangue ja esta cheio!");
