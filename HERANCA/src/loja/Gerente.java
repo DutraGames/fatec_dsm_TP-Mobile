@@ -6,7 +6,7 @@ public class Gerente extends Funcionario {
         super(nome, cpf, salario);
     }
 
-    void fecharCaixa(double valor) {
+    public void fecharCaixa(double valor) {
         System.out.println("Caixa Fechou com: " + valor);
     }
 }

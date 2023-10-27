@@ -12,7 +12,7 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    void BaterPonto(double entrada, double saida){
+    public void baterPonto(double entrada, double saida){
         System.out.println("Funcionario: " + nome);
         System.out.println("Entrada: " + entrada);
         System.out.println("Saida: " + saida);
