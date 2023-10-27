@@ -16,5 +16,6 @@ public class Funcionario {
         System.out.println("Funcionario: " + nome);
         System.out.println("Entrada: " + entrada);
         System.out.println("Saida: " + saida);
+        System.out.println("Horas Trabalhadas: " + (saida - entrada));
     }
 }
