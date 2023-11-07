@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import associacao.composicao.*;
 import associacao.agregacao.*;
+import comportamental.Dependencia.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -42,7 +43,7 @@ public class App {
 
         //ex2
 
-        Scanner input = new Scanner(System.in);
+/*         Scanner input = new Scanner(System.in);
 
         System.out.print("Digite o nome da disciplina: ");
         String nome = input.next();
@@ -55,7 +56,24 @@ public class App {
         disciplina.adicionarAluno(a1);
         disciplina.adicionarAluno(a2);
 
-        disciplina.mostrarAlunos();
+        disciplina.mostrarAlunos(); */
+
+        //ex3
+
+        Scanner input = new Scanner(System.in);
+
+        System.err.print("Digite o numero do cupom: ");
+        int cupom = input.nextInt();
+
+        Cupom cup = new Cupom(cupom);
+
+        Compra comp = new Compra(cup);
+
+        comp.finalizar();
+
+
+
+
 
 
 
