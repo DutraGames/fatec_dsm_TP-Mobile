@@ -62,14 +62,22 @@ public class App {
 
         Scanner input = new Scanner(System.in);
 
-        System.err.print("Digite o numero do cupom: ");
+        System.err.print("Digite o numero do cpf: ");
+        int cpf = input.nextInt();
+
+        System.out.print("Digite o nome do cliente: ");
+        String nome = input.next();
+
+        Cliente cliente = new Cliente(cpf, nome);
+
+        Compra comp = new Compra(cliente);
+
+        System.out.print("Digite o código do cupom: ");
         int cupom = input.nextInt();
 
         Cupom cup = new Cupom(cupom);
 
-        Compra comp = new Compra(cup);
-
-        comp.finalizar();
+        comp.finalizar(cup);
 
 
 
