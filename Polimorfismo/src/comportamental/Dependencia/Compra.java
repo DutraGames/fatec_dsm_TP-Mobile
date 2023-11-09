@@ -2,13 +2,13 @@ package comportamental.Dependencia;
 
 public class Compra {
     
-    Cupom cupom;
+    Cliente cliente;
     
-    public Compra(Cupom cupom) {
-        this.cupom = cupom;
+    public Compra(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void finalizar() {
+    public void finalizar(Cupom cupom) {
         System.out.println("Compra finalizada com sucesso! \n Com o cupom: " + cupom.codigo);
     }
 }
