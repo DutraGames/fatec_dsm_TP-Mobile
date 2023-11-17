@@ -16,7 +16,8 @@ public class Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField inputName;
+	private JTextField inputAge;
 
 	/**
 	 * Launch the application.
@@ -39,7 +40,7 @@ public class Principal extends JFrame {
 	 */
 	public Principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 497, 346);
+		setBounds(400, 100, 600, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -47,10 +48,15 @@ public class Principal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(169, 118, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		inputName = new JTextField();
+		inputName.setBounds(169, 118, 86, 20);
+		contentPane.add(inputName);
+		inputName.setColumns(10);
+
+        inputAge = new JTextField();
+		inputAge.setBounds(169, 210, 86, 20);
+		contentPane.add(inputAge);
+		inputAge.setColumns(10);
 		
 		JLabel resposta = new JLabel("");
 		resposta.setBounds(144, 183, 148, 113);
@@ -59,7 +65,7 @@ public class Principal extends JFrame {
 		JButton btnNewButton = new JButton("Enviar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nome = textField.getText();
+				String nome = inputName.getText();
 				JOptionPane.showMessageDialog(null,"Seja bem vindo " + nome);
 				
 			}
