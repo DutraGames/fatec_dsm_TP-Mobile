@@ -130,7 +130,7 @@ public class Principal extends JFrame {
 
 
 		txtResultado = new JLabel("");
-		txtResultado.setBounds(50, 260, 340, 50);
+		txtResultado.setBounds(50, 260, 340, 80);
 		contentPane.add(txtResultado);
 
         JButton btnNewButton = new JButton("Enviar");
