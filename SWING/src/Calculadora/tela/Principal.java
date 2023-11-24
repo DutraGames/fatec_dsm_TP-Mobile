@@ -63,8 +63,13 @@ public class Principal extends JFrame {
         JButton adicionar = new JButton("Adicionar");
         adicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int num = Integer.parseInt(inputNum.getText());
+                try{
+                    int num = Integer.parseInt(inputNum.getText());
                 numeros.add(num);
+                }
+                catch (Exception error) {
+                    JOptionPane.showMessageDialog(null, error.getMessage());
+                }
             }
         });
 
@@ -74,8 +79,11 @@ public class Principal extends JFrame {
                 try {
                     double media = Calculadora.calcularMedia(numeros);
                     JOptionPane.showMessageDialog(null, "Media: " + media);
-                } catch (ArithmeticException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                } catch (ArithmeticException error) {
+                    JOptionPane.showMessageDialog(null, error.getMessage());
+                }
+                catch (Exception error) {
+                    JOptionPane.showMessageDialog(null, error.getMessage());
                 }
 
             }
