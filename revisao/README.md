@@ -1,18 +1,11 @@
-## Getting Started
+1.Gestão de Funcionários em uma Empresa:
+   - Contexto: Desenvolver um sistema de gestão de funcionários, onde cada funcionário é representado como um objeto. Criem classes para diferentes tipos de funcionários (por exemplo, gerentes, desenvolvedores) com herança. Utilizar abstração para identificar os atributos e métodos essenciais. Implementar um ArrayList para armazenar e manipular a lista de funcionários. Demonstração de encapsulamento, polimorfismo para operações comuns como apagar tabela do banco, subir para produção e desenvolver telas. Ao final utilize um método de iteração utilizando o foreach para exibir informações sobre os funcionários.
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+2. Cadastro de Produtos em um Estoque:
+   - Contexto: Criar um sistema para gerenciar um estoque de produtos em uma loja. Criem classes para representar diferentes tipos de produtos (eletrônicos, roupas) com herança. Utilizar encapsulamento para proteger dados sensíveis, abstração para identificar características essenciais e polimorfismo para lidar com diferentes tipos de produtos, ligar, conectar wi-fi. Implementar um ArrayList para armazenar e manipular a lista de produtos. Utilizar um método foreach para exibir informações sobre os produtos.
 
-## Folder Structure
+3. Sistema de Gerenciamento de Veículos:
+   - Contexto: Desenvolver um sistema que gerencie informações sobre diferentes tipos de veículos, como carros, motos e caminhões. Criem classes para cada tipo de veículo com herança, aplicando abstração para identificar atributos e métodos essenciais. Utilizar encapsulamento para proteger dados e implementar um ArrayList para armazenar e manipular a lista de veículos. Demonstração de polimorfismo para operações comuns e utilização de foreach para exibir informações sobre os veículos.
 
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+4. Sistema de Gerenciamento de Contatos:
+   - Contexto: Criar um sistema que permita o gerenciamento de contatos, onde cada contato é representado como um objeto. Os alunos devem criar classes para diferentes tipos de contatos (pessoal, profissional) com herança. Utilizar abstração para identificar atributos e métodos essenciais, encapsulamento para proteger dados sensíveis e polimorfismo para operações comuns. Implementar um ArrayList para armazenar e manipular a lista de contatos. Utilizar um método foreach para exibir informações sobre os contatos.
