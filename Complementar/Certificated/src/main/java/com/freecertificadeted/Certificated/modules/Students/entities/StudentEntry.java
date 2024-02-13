@@ -13,6 +13,6 @@ public class StudentEntry {
     private UUID id;
     private String email;
     private String name;
-    private List<CertionStudentEntry> certionStudentEntries;
+    private List<CertificationStudentEntry> certificationStudentEntries;
     
 }

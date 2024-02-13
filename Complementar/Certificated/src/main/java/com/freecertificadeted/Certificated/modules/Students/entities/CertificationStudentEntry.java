@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CertionStudentEntry {
+public class CertificationStudentEntry {
     private UUID id;
     private UUID studentID;
     private String technology;
     private int grade;
-    private List<AnswersCertionEntry> answersCertionEntries;
+    private List<AnswersCertificationEntry> answersCertificationEntries;
 
 }

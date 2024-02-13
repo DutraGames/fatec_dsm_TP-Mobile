@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnswersCertionEntry {
+public class AnswersCertificationEntry {
 
     private UUID id;
     private UUID certionID;
