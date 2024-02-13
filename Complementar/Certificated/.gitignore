@@ -34,4 +34,4 @@ build/
 
 
 ### CONFIG
-application.properties
+resources/
