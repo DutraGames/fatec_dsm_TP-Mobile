@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-agroal</artifactId>
-			<version>5.4.10.Final</version>
+			<version>6.4.4.Final</version>
 			<type>pom</type>
 		</dependency>
 
