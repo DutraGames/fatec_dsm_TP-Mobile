@@ -1,38 +1,42 @@
 package restaurant.com.restaurante.controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import restaurant.com.restaurante.entities.PedidoEntity;
-import restaurant.com.restaurante.repository.PedidoRepository;
-import restaurant.com.restaurante.repository.PratoRepository;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import restaurant.com.restaurante.entities.PedidoEntity;
+import restaurant.com.restaurante.entities.PratoEntity;
+import restaurant.com.restaurante.repository.PedidoRepository;
+import restaurant.com.restaurante.repository.PratoRepository;
 
 @RestController
 @RequestMapping("/pedidos")
 public class PedidosController {
 
-    @Autowired
-    PedidoRepository pedidoRepository;
+  @Autowired
+  PedidoRepository pedidoRepository;
 
-    @Autowired
-    PratoRepository pratoRepository;
-    @PostMapping()
-public PedidoEntity criarPedido(@RequestBody PedidoEntity pedido) {
-    return pedidoRepository.save(pedido);
-}
-    
+  @PostMapping
+  public PedidoEntity criarPedido(@RequestBody List<PratoEntity> pratos) {
+    double valorTotal = 0;
 
-    @GetMapping()
-    public List<PedidoEntity> buscarTodosOsPedidos() {
-        return pedidoRepository.findAll();        
+    for (PratoEntity prato : pratos) {
+      valorTotal += prato.getPreco();
     }
-    
+
+    PedidoEntity pedido = new PedidoEntity();
+    pedido.setPratos(pratos);
+    pedido.setValorTotal(valorTotal);
+    pedido.setValorEntrega(valorTotal * 0.1);
+
+    return pedidoRepository.save(pedido);
+  }
+
+  @GetMapping
+  public List<PedidoEntity> buscarTodosOsPedidos() {
+    return pedidoRepository.findAll();
+  }
 }
