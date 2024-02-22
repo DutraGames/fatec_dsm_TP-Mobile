@@ -3,9 +3,11 @@ package restaurant.com.restaurante.controllers;
 import java.text.DecimalFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,5 +50,25 @@ public class PedidosController {
   @GetMapping("/{id}")
   public PedidoEntity buscarUmPedido(@PathVariable int id) {
     return pedidoRepository.findById(id).get();
+  }
+
+  @DeleteMapping("/{id}")
+  public String deletarPedido(@PathVariable int id) {
+    pedidoRepository.deleteById(id);
+    return "Pedido deletado";
+  }
+
+  @PutMapping("/{id}")
+  public PedidoEntity atualizarPedido(
+    @PathVariable int id,
+    @RequestBody PedidoEntity pedido
+  ) {
+    PedidoEntity pedidoAtual = pedidoRepository.findById(id).get();
+
+    pedidoAtual.setPratos(pedido.getPratos());
+    pedidoAtual.setValorTotal(pedido.getValorTotal());
+    pedidoAtual.setValorEntrega(pedido.getValorEntrega());
+
+    return pedidoRepository.save(pedidoAtual);
   }
 }
