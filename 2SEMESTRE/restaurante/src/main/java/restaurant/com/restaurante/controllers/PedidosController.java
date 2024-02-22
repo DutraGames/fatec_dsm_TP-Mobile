@@ -1,5 +1,6 @@
 package restaurant.com.restaurante.controllers;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ public class PedidosController {
   @Autowired
   PedidoRepository pedidoRepository;
 
+  DecimalFormat decimalFormat = new DecimalFormat("0.00");
+
   @PostMapping
   public PedidoEntity criarPedido(@RequestBody List<PratoEntity> pratos) {
     double valorTotal = 0;
@@ -30,7 +33,9 @@ public class PedidosController {
     PedidoEntity pedido = new PedidoEntity();
     pedido.setPratos(pratos);
     pedido.setValorTotal(valorTotal);
-    pedido.setValorEntrega(valorTotal * 0.01);
+    double valorEntrega = valorTotal * 0.01;
+    String valorEntregaFormatado = decimalFormat.format(valorEntrega);
+    pedido.setValorEntrega(Double.parseDouble(valorEntregaFormatado));
 
     return pedidoRepository.save(pedido);
   }
