@@ -37,6 +37,7 @@ public class PedidosController {
     pedido.setValorTotal(valorTotal);
     double valorEntrega = valorTotal * 0.01;
     String valorEntregaFormatado = decimalFormat.format(valorEntrega);
+    valorEntregaFormatado = valorEntregaFormatado.replace(",", ".");
     pedido.setValorEntrega(Double.parseDouble(valorEntregaFormatado));
 
     return pedidoRepository.save(pedido);
