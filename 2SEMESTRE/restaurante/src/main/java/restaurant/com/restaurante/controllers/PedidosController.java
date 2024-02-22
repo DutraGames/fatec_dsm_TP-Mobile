@@ -3,6 +3,7 @@ package restaurant.com.restaurante.controllers;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import restaurant.com.restaurante.entities.PedidoEntity;
 import restaurant.com.restaurante.entities.PratoEntity;
 import restaurant.com.restaurante.repository.PedidoRepository;
-import restaurant.com.restaurante.repository.PratoRepository;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -30,7 +30,7 @@ public class PedidosController {
     PedidoEntity pedido = new PedidoEntity();
     pedido.setPratos(pratos);
     pedido.setValorTotal(valorTotal);
-    pedido.setValorEntrega(valorTotal * 0.1);
+    pedido.setValorEntrega(valorTotal * 0.01);
 
     return pedidoRepository.save(pedido);
   }
@@ -38,5 +38,10 @@ public class PedidosController {
   @GetMapping
   public List<PedidoEntity> buscarTodosOsPedidos() {
     return pedidoRepository.findAll();
+  }
+
+  @GetMapping("/{id}")
+  public PedidoEntity buscarUmPedido(@PathVariable int id) {
+    return pedidoRepository.findById(id).get();
   }
 }
