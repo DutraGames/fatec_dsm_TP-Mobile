@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import React from "react";
+import React, { FormEvent } from "react";
 
 import {
   Dialog,
@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { FormPratos } from "@/components/formPratos";
 
 export default function Dashboard() {
   return (
@@ -29,8 +30,8 @@ export default function Dashboard() {
         <header className="flex items-center justify-between p-4 bg-secondary-foreground border-b-2 border-secondary/10">
           <h1 className="text-2xl font-bold">Bom Prato</h1>
 
-          <DialogTrigger>
-            <Button>Adicionar Prato</Button>
+          <DialogTrigger className="rounded-md bg-primary p-2 font-bold hover:bg-primary/80 transition-all">
+            Adicionar Prato
           </DialogTrigger>
         </header>
 
@@ -58,15 +59,7 @@ export default function Dashboard() {
               <DialogTitle>Adicionar Prato</DialogTitle>
               <DialogDescription>Preencha os dados do prato</DialogDescription>
             </DialogHeader>
-            <form className="flex flex-col gap-2">
-              <Label>Nome</Label>
-              <Input type="text" />
-              <Label>Preço</Label>
-              <Input type="number" />
-              <DialogFooter>
-                <Button type="submit">Adicionar</Button>
-              </DialogFooter>
-            </form>
+            <FormPratos />
           </DialogContent>
         </main>
       </Dialog>
