@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import React, { FormEvent } from "react";
 
 import {
   Dialog,
@@ -17,13 +15,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { FormPratos } from "@/components/formPratos";
+import { FormPratos } from "@/components/formCreatePratos";
+import { api } from "@/services/api";
+import { ActionPrato } from "@/components/actionPrato";
 
-export default function Dashboard() {
+const getPratos = async () => {
+  const response = await api.get("/prato");
+  return response.data;
+};
+
+interface Prato {
+  id: number;
+  nome: string;
+  preco: number;
+}
+
+export default async function Dashboard() {
+  const pratos = await getPratos();
   return (
     <div className="flex flex-col  h-screen bg-secondary-foreground text-white">
       <Dialog>
@@ -43,14 +52,20 @@ export default function Dashboard() {
                 <TableHead className="w-[100px]">id</TableHead>
                 <TableHead>Nome</TableHead>
                 <TableHead className="w-[100px]">preço</TableHead>
+                <TableHead className="w-[100px]">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableCell>1</TableCell>
-                <TableCell>Macarrão</TableCell>
-                <TableCell>R$ 12,00</TableCell>
-              </TableRow>
+              {pratos.map((prato: Prato) => (
+                <TableRow key={prato.id}>
+                  <TableCell>{prato.id}</TableCell>
+                  <TableCell>{prato.nome}</TableCell>
+                  <TableCell>{prato.preco}</TableCell>
+                  <TableCell className="flex gap-2">
+                    <ActionPrato prato={prato} />
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
 
