@@ -7,6 +7,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/services/api";
+import { toast } from "sonner";
 
 const pratoCreateSchema = z.object({
   nome: z.string().min(3, { message: "Nome muito curto" }).toLowerCase(),
@@ -31,6 +32,7 @@ export const FormPratos = () => {
 
   const handleAddPrato = (data: PratoCreateSchema) => {
     api.post("/prato", data);
+    toast.success("Prato adicionado");
   };
 
   return (
