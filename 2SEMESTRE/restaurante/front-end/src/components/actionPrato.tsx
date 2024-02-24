@@ -36,14 +36,14 @@ interface PratoProps {
 }
 
 export const ActionPrato = ({ prato }: PratoProps) => {
-  const deletePrato = (id: number) => {
-    api.delete(`/prato/${id}`);
+  const deletePrato = async (id: number) => {
+    await api.delete(`/prato/${id}`);
     queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato deletado");
   };
 
-  const handleUpdatePrato = (data: PratoEditSchema) => {
-    api.put(`/prato/${prato.id}`, data);
+  const handleUpdatePrato = async (data: PratoEditSchema) => {
+    await api.put(`/prato/${prato.id}`, data);
     queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato Editado");
   };
