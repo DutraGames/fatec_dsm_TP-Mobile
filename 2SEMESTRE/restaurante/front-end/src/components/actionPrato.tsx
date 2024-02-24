@@ -26,17 +26,20 @@ const pratoEditSchema = z.object({
 
 type PratoEditSchema = z.infer<typeof pratoEditSchema>;
 
-interface Prato {
+interface PratoProps {
   prato: {
     id: number;
     nome: string;
     preco: number;
   };
+  handleRefresh: () => void;
 }
 
-export const ActionPrato = ({ prato }: Prato) => {
+export const ActionPrato = ({ prato, handleRefresh }: PratoProps) => {
   const deletePrato = (id: number) => {
     api.delete(`/prato/${id}`);
+    toast.success("Prato deletado");
+    handleRefresh();
   };
 
   const handleUpdatePrato = (data: PratoEditSchema) => {

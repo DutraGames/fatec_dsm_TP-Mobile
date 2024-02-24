@@ -1,8 +1,8 @@
+"use client";
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -17,22 +17,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FormPratos } from "@/components/formCreatePratos";
-import { api } from "@/services/api";
-import { ActionPrato } from "@/components/actionPrato";
+import { TablePratos } from "@/components/tablePratos";
+import { useState } from "react";
 
-const getPratos = async () => {
-  const response = await api.get("/prato");
-  return response.data;
-};
+export default function Dashboard() {
+  const [refresh, setRefresh] = useState(false);
 
-interface Prato {
-  id: number;
-  nome: string;
-  preco: number;
-}
+  const handleRefresh = () => {
+    console.log(refresh);
+    setRefresh(!refresh);
+  };
 
-export default async function Dashboard() {
-  const pratos = await getPratos();
   return (
     <div className="flex flex-col  h-screen bg-secondary-foreground text-white">
       <Dialog>
@@ -55,18 +50,8 @@ export default async function Dashboard() {
                 <TableHead className="w-[100px]">Ações</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {pratos.map((prato: Prato) => (
-                <TableRow key={prato.id}>
-                  <TableCell>{prato.id}</TableCell>
-                  <TableCell>{prato.nome}</TableCell>
-                  <TableCell>{prato.preco}</TableCell>
-                  <TableCell className="flex gap-2">
-                    <ActionPrato prato={prato} />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
+
+            <TablePratos handleRefresh={handleRefresh} refresh={refresh} />
           </Table>
 
           <DialogContent>
@@ -74,7 +59,7 @@ export default async function Dashboard() {
               <DialogTitle>Adicionar Prato</DialogTitle>
               <DialogDescription>Preencha os dados do prato</DialogDescription>
             </DialogHeader>
-            <FormPratos />
+            <FormPratos handleRefresh={handleRefresh} />
           </DialogContent>
         </main>
       </Dialog>

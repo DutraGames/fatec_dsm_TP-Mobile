@@ -16,7 +16,11 @@ const pratoCreateSchema = z.object({
 
 type PratoCreateSchema = z.infer<typeof pratoCreateSchema>;
 
-export const FormPratos = () => {
+export const FormPratos = ({
+  handleRefresh,
+}: {
+  handleRefresh: () => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +37,7 @@ export const FormPratos = () => {
   const handleAddPrato = (data: PratoCreateSchema) => {
     api.post("/prato", data);
     toast.success("Prato adicionado");
+    handleRefresh();
   };
 
   return (
