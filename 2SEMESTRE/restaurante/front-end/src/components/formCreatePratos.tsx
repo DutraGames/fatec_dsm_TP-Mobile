@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/services/api";
 import { toast } from "sonner";
+import { queryClient } from "@/services/QueryClient";
 
 const pratoCreateSchema = z.object({
   nome: z.string().min(3, { message: "Nome muito curto" }).toLowerCase(),
@@ -16,11 +17,7 @@ const pratoCreateSchema = z.object({
 
 type PratoCreateSchema = z.infer<typeof pratoCreateSchema>;
 
-export const FormPratos = ({
-  handleRefresh,
-}: {
-  handleRefresh: () => void;
-}) => {
+export const FormPratos = () => {
   const {
     register,
     handleSubmit,
@@ -34,10 +31,10 @@ export const FormPratos = ({
     },
   });
 
-  const handleAddPrato = (data: PratoCreateSchema) => {
-    api.post("/prato", data);
+  const handleAddPrato = async (data: PratoCreateSchema) => {
+    await api.post("/prato", data);
+    queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato adicionado");
-    handleRefresh();
   };
 
   return (

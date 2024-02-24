@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { toast } from "sonner";
+import { queryClient } from "@/services/QueryClient";
 
 const pratoEditSchema = z.object({
   nome: z.string().min(3, { message: "Nome muito curto" }).toLowerCase(),
@@ -32,18 +33,18 @@ interface PratoProps {
     nome: string;
     preco: number;
   };
-  handleRefresh: () => void;
 }
 
-export const ActionPrato = ({ prato, handleRefresh }: PratoProps) => {
+export const ActionPrato = ({ prato }: PratoProps) => {
   const deletePrato = (id: number) => {
     api.delete(`/prato/${id}`);
+    queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato deletado");
-    handleRefresh();
   };
 
   const handleUpdatePrato = (data: PratoEditSchema) => {
     api.put(`/prato/${prato.id}`, data);
+    queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato Editado");
   };
 

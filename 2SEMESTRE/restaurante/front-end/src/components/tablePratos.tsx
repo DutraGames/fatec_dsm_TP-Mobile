@@ -3,6 +3,7 @@ import { TableBody, TableCell, TableRow } from "./ui/table";
 import { ActionPrato } from "./actionPrato";
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface PratoProps {
   id: number;
@@ -10,33 +11,26 @@ interface PratoProps {
   preco: number;
 }
 
-export const TablePratos = ({
-  handleRefresh,
-  refresh,
-}: {
-  handleRefresh: () => void;
-  refresh: boolean;
-}) => {
-  useEffect(() => {
-    const getPratos = async () => {
-      const response: { data: PratoProps[] } = await api.get("/prato");
-      return response.data;
-    };
+export const TablePratos = () => {
+  const getPratos = async () => {
+    const response: { data: PratoProps[] } = await api.get("/prato");
+    return response.data;
+  };
 
-    getPratos().then((data) => setPratos(data));
-  }, [refresh, handleRefresh]);
-
-  const [pratos, setPratos] = useState<PratoProps[]>([]);
+  const { data } = useQuery({
+    queryKey: ["pratos"],
+    queryFn: getPratos,
+  });
 
   return (
     <TableBody>
-      {pratos.map((prato: PratoProps) => (
+      {data?.map((prato: PratoProps) => (
         <TableRow key={prato.id}>
           <TableCell>{prato.id}</TableCell>
           <TableCell>{prato.nome}</TableCell>
           <TableCell>R$ {prato.preco.toFixed(2)}</TableCell>
           <TableCell className="flex gap-2">
-            <ActionPrato prato={prato} handleRefresh={handleRefresh} />
+            <ActionPrato prato={prato} />
           </TableCell>
         </TableRow>
       ))}

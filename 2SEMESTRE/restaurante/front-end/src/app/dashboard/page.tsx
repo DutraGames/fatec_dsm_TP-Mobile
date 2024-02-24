@@ -1,4 +1,3 @@
-"use client";
 import {
   Table,
   TableBody,
@@ -18,16 +17,8 @@ import {
 } from "@/components/ui/dialog";
 import { FormPratos } from "@/components/formCreatePratos";
 import { TablePratos } from "@/components/tablePratos";
-import { useState } from "react";
 
 export default function Dashboard() {
-  const [refresh, setRefresh] = useState(false);
-
-  const handleRefresh = () => {
-    console.log(refresh);
-    setRefresh(!refresh);
-  };
-
   return (
     <div className="flex flex-col  h-screen bg-secondary-foreground text-white">
       <Dialog>
@@ -51,7 +42,7 @@ export default function Dashboard() {
               </TableRow>
             </TableHeader>
 
-            <TablePratos handleRefresh={handleRefresh} refresh={refresh} />
+            <TablePratos />
           </Table>
 
           <DialogContent>
@@ -59,7 +50,7 @@ export default function Dashboard() {
               <DialogTitle>Adicionar Prato</DialogTitle>
               <DialogDescription>Preencha os dados do prato</DialogDescription>
             </DialogHeader>
-            <FormPratos handleRefresh={handleRefresh} />
+            <FormPratos />
           </DialogContent>
         </main>
       </Dialog>
