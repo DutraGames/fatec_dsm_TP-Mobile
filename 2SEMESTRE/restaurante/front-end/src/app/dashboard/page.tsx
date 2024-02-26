@@ -20,9 +20,9 @@ import { TablePratos } from "@/components/pratos/tablePratos";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-col text-white">
+    <div className="flex flex-col">
       <Dialog>
-        <header className="flex items-center justify-between p-4 bg-secondary-foreground border-b-2 border-secondary/10">
+        <header className="flex items-center justify-between p-4 border-b-2 border-secondary/10">
           <h1 className="text-2xl font-bold">Bom Prato</h1>
 
           <DialogTrigger className="rounded-md bg-primary p-2 font-bold hover:bg-primary/80 transition-all">
@@ -45,7 +45,7 @@ export default function Dashboard() {
             <TablePratos />
           </Table>
 
-          <DialogContent>
+          <DialogContent className="text-zinc-950">
             <DialogHeader>
               <DialogTitle>Adicionar Prato</DialogTitle>
               <DialogDescription>Preencha os dados do prato</DialogDescription>

@@ -25,7 +25,7 @@ export default function RootLayout({
       <Toaster richColors />
       <body
         className={cn(
-          "bg-secondary-foreground antialiased font-sans",
+          "bg-secondary-foreground antialiased font-sans text-white",
           inter.variable
         )}
       >
