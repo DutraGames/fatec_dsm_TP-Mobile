@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "../ui/button";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/services/api";
 import { toast } from "sonner";
@@ -58,11 +58,18 @@ export const FormCreatePedidos = () => {
   });
 
   const handleAddPedido = async (data: PedidoCreateSchema) => {
-    /* await api.post("/prato", data);
-    queryClient.invalidateQueries({ queryKey: ["pratos"] });
-    toast.success("Prato adicionado"); */
+    if (data.reserva === "sim") {
+      const mesaData = {
+        numero: Math.floor(Math.random() * 5000),
+      };
 
-    console.log(data);
+      await api.post("/mesas", mesaData);
+      queryClient.invalidateQueries({ queryKey: ["mesas"] });
+    }
+
+    await api.post("/pedidos", JSON.parse(data.pratos));
+    queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+    toast.success("Pedido adicionado");
   };
 
   return (
@@ -115,11 +122,13 @@ export const FormCreatePedidos = () => {
                   {data?.map((prato: PratoProps) => (
                     <SelectItem
                       key={prato.id}
-                      value={JSON.stringify({
-                        id: prato.id,
-                        nome: prato.nome,
-                        preco: prato.preco,
-                      })}
+                      value={JSON.stringify([
+                        {
+                          id: prato.id,
+                          nome: prato.nome,
+                          preco: prato.preco,
+                        },
+                      ])}
                     >
                       {prato.nome} - R$ {prato.preco.toFixed(2)}
                     </SelectItem>
