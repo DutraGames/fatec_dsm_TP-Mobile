@@ -8,10 +8,10 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-} from "./ui/dialog";
+} from "../ui/dialog";
 
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

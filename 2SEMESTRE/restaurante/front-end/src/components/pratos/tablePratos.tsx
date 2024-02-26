@@ -1,5 +1,5 @@
 "use client";
-import { TableBody, TableCell, TableRow } from "./ui/table";
+import { TableBody, TableCell, TableRow } from "../ui/table";
 import { ActionPrato } from "./actionPrato";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";

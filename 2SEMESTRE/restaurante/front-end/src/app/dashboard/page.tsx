@@ -15,8 +15,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FormCreatePratos } from "@/components/formCreatePratos";
-import { TablePratos } from "@/components/tablePratos";
+import { FormCreatePratos } from "@/components/pratos/formCreatePratos";
+import { TablePratos } from "@/components/pratos/tablePratos";
 
 export default function Dashboard() {
   return (
