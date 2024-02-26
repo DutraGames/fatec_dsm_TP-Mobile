@@ -15,6 +15,8 @@ const pratoCreateSchema = z.object({
   preco: z.coerce.number().min(1, { message: "Preço inválido" }),
 });
 
+import { useHookFormMask } from "use-mask-input";
+
 type PratoCreateSchema = z.infer<typeof pratoCreateSchema>;
 
 export const FormCreatePratos = () => {
@@ -33,6 +35,8 @@ export const FormCreatePratos = () => {
     },
   });
 
+  const registerWithMask = useHookFormMask(register);
+
   const handleAddPrato = async (data: PratoCreateSchema) => {
     await api.post("/prato", data);
     queryClient.invalidateQueries({ queryKey: ["pratos"] });
@@ -50,7 +54,12 @@ export const FormCreatePratos = () => {
       <Input {...register("nome")} placeholder="Macarrão" />
       <p className="text-xs text-primary">{errors.nome?.message}</p>
       <Label>Preço</Label>
-      <Input {...register("preco")} placeholder="R$ 12.00" />
+      <Input
+        {...registerWithMask("preco", ["999.99"], {
+          required: true,
+        })}
+        placeholder="R$ 12.00"
+      />
       <p className="text-xs text-primary">{errors.preco?.message}</p>
       <DialogFooter>
         <Button type="submit">Adicionar</Button>
