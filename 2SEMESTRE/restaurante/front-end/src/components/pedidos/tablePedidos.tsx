@@ -3,6 +3,7 @@ import { TableBody, TableCell, TableRow } from "../ui/table";
 //import { ActionPrato } from "./actionPrato";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
+import { ActionPedido } from "./actionPedido";
 
 interface PratoProps {
   id: number;
@@ -36,7 +37,9 @@ export const TablePedidos = () => {
           <TableCell>{pedido.id}</TableCell>
           <TableCell>{pedido.pratos[0].nome}</TableCell>
           <TableCell>R$ {pedido.valorTotal.toFixed(2)}</TableCell>
-          <TableCell className="flex gap-2">...</TableCell>
+          <TableCell className="flex gap-2">
+            <ActionPedido pedido={pedido} />
+          </TableCell>
         </TableRow>
       ))}
     </TableBody>
