@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { toast } from "sonner";
 import { queryClient } from "@/services/QueryClient";
+import { useHookFormMask } from "use-mask-input";
 
 const pratoEditSchema = z.object({
   nome: z.string().min(3, { message: "Nome muito curto" }).toLowerCase(),
@@ -59,6 +60,8 @@ export const ActionPrato = ({ prato }: PratoProps) => {
     },
   });
 
+  const registerWithMask = useHookFormMask(register);
+
   return (
     <Dialog>
       <Button variant="destructive" onClick={() => deletePrato(prato.id)}>
@@ -80,7 +83,12 @@ export const ActionPrato = ({ prato }: PratoProps) => {
             <Input {...register("nome")} placeholder="Macarrão" />
             <p className="text-xs text-primary">{errors.nome?.message}</p>
             <Label>Preço</Label>
-            <Input {...register("preco")} placeholder="R$ 12.00" />
+            <Input
+              {...registerWithMask("preco", ["999.99"], {
+                required: true,
+              })}
+              placeholder="R$ 12.00"
+            />
             <p className="text-xs text-primary">{errors.preco?.message}</p>
             <DialogFooter>
               <Button type="submit">Salvar</Button>
