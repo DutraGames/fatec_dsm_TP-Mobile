@@ -17,17 +17,19 @@ const pratoCreateSchema = z.object({
 
 type PratoCreateSchema = z.infer<typeof pratoCreateSchema>;
 
-export const FormPratos = () => {
+export const FormCreatePratos = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<PratoCreateSchema>({
     resolver: zodResolver(pratoCreateSchema),
     mode: "all",
     criteriaMode: "all",
     defaultValues: {
       nome: "",
+      preco: 0,
     },
   });
 
@@ -35,6 +37,8 @@ export const FormPratos = () => {
     await api.post("/prato", data);
     queryClient.invalidateQueries({ queryKey: ["pratos"] });
     toast.success("Prato adicionado");
+    setValue("nome", "");
+    setValue("preco", 0);
   };
 
   return (

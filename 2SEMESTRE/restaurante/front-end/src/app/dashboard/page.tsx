@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FormPratos } from "@/components/formCreatePratos";
+import { FormCreatePratos } from "@/components/formCreatePratos";
 import { TablePratos } from "@/components/tablePratos";
 
 export default function Dashboard() {
@@ -50,7 +50,7 @@ export default function Dashboard() {
               <DialogTitle>Adicionar Prato</DialogTitle>
               <DialogDescription>Preencha os dados do prato</DialogDescription>
             </DialogHeader>
-            <FormPratos />
+            <FormCreatePratos />
           </DialogContent>
         </main>
       </Dialog>
