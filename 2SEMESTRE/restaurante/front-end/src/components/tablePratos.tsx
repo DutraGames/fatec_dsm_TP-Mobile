@@ -2,7 +2,6 @@
 import { TableBody, TableCell, TableRow } from "./ui/table";
 import { ActionPrato } from "./actionPrato";
 import { api } from "@/services/api";
-import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 interface PratoProps {
