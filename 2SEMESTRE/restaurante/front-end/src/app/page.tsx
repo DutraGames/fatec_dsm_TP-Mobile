@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import {
   Dialog,
   DialogContent,
@@ -9,7 +7,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 import { FormCreatePedidos } from "@/components/pedidos/formCreatePedido";
+import { TablePedidos } from "@/components/pedidos/tablePedidos";
 
 export default function Home() {
   return (
@@ -23,7 +32,22 @@ export default function Home() {
           </DialogTrigger>
         </header>
 
-        <main className="mt-10 mx-40"></main>
+        <main className="mt-10 mx-40">
+          <Table className="w-full">
+            <TableCaption>Seus Pratos Cadastrados</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px] text-center">
+                  número do pedido
+                </TableHead>
+                <TableHead>pedido</TableHead>
+                <TableHead className="w-[100px]">preço total</TableHead>
+                <TableHead className="w-[100px]">Ações</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TablePedidos />
+          </Table>
+        </main>
 
         <DialogContent className="text-zinc-950">
           <DialogHeader>
