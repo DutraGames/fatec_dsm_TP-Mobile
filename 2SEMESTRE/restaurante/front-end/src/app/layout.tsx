@@ -3,7 +3,12 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Provider } from "./provider";
-const inter = Inter({ subsets: ["latin"] });
+import { cn } from "@/lib/utils";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +23,12 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <Toaster richColors />
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "bg-secondary-foreground antialiased font-sans",
+          inter.variable
+        )}
+      >
         <Provider>{children}</Provider>
       </body>
     </html>

@@ -20,7 +20,7 @@ import { TablePratos } from "@/components/pratos/tablePratos";
 
 export default function Dashboard() {
   return (
-    <div className="flex flex-col  h-screen bg-secondary-foreground text-white">
+    <div className="flex flex-col text-white">
       <Dialog>
         <header className="flex items-center justify-between p-4 bg-secondary-foreground border-b-2 border-secondary/10">
           <h1 className="text-2xl font-bold">Bom Prato</h1>
