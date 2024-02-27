@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import restaurant.com.restaurante.dto.CreateMesaDTO;
+import restaurant.com.restaurante.dto.OcuparMesaDTO;
 import restaurant.com.restaurante.entities.MesaEntity;
 import restaurant.com.restaurante.repository.MesaRepository;
 
@@ -48,10 +50,13 @@ public class MesaController {
     summary = "Cria uma mesa",
     description = "Cria uma mesa no sistema"
   )
-  @Parameter(name = "mesa", description = "Mesa a ser criada", required = true)
+  @Parameter(name = "numero", description = "Número da mesa", required = true)
   @PostMapping
-  public MesaEntity criarMessa(@RequestBody MesaEntity mesa) {
-    return mesaRepository.save(mesa);
+  public MesaEntity criarMessa(@RequestBody CreateMesaDTO mesa) {
+    MesaEntity mesaEntity = new MesaEntity();
+    mesaEntity.setNumero(mesa.getNumero());
+
+    return mesaRepository.save(mesaEntity);
   }
 
   @Operation(
@@ -59,10 +64,11 @@ public class MesaController {
     description = "Atualiza uma mesa no sistema"
   )
   @Parameter(name = "id", description = "Id da mesa", required = true)
+  @Parameter(name = "numero", description = "Número da mesa", required = true)
   @PutMapping("/{id}")
   public MesaEntity atualizarMesa(
     @PathVariable("id") int id,
-    @RequestBody MesaEntity mesa
+    @RequestBody CreateMesaDTO mesa
   ) {
     MesaEntity mesaAtual = mesaRepository.findById(id).get();
     mesaAtual.setNumero(mesa.getNumero());
@@ -77,7 +83,7 @@ public class MesaController {
   @PutMapping("/ocupar/{id}")
   public MesaEntity ocuparMesa(
     @PathVariable("id") int id,
-    @RequestBody MesaEntity mesa
+    @RequestBody OcuparMesaDTO mesa
   ) {
     MesaEntity mesaAtual = mesaRepository.findById(id).get();
     mesaAtual.setLivre(false);
