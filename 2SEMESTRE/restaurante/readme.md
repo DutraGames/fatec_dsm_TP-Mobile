@@ -44,22 +44,22 @@ O **Bom Prato** é um sistema de pedidos de restaurante desenvolvido para otimiz
     - **GroupID:** org.springdoc
     - **ArtifactID:** springdoc-openapi-starter-webmvc-ui
 
-- ### **FrontEnd**
+### **FrontEnd**
 
-  - **@hookform/resolvers**
-  - **@tanstack/react-query**
-  - **axios**
-  - **class-variance-authority**
-  - **clsx**
-  - **react**
-  - **react-dom**
-  - **react-hook-form**
-  - **sonner**
-  - **tailwind-merge**
-  - **tailwindcss-animate**
-  - **use-mask-input**
-  - **zod**
-  - **ShadUI**
+- **@hookform/resolvers**
+- **@tanstack/react-query**
+- **axios**
+- **class-variance-authority**
+- **clsx**
+- **react**
+- **react-dom**
+- **react-hook-form**
+- **sonner**
+- **tailwind-merge**
+- **tailwindcss-animate**
+- **use-mask-input**
+- **zod**
+- **ShadUI**
 
 ## Regras de Negócio
 
