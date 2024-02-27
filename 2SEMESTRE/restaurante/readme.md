@@ -4,17 +4,62 @@ O sistema foi desenvolvido pelo seguinte grupo:
 
 - [Gabriel Dutra](https://github.com/DutraGames)
 - [Luccas Lohan](https://github.com/gohan-exe)
-- [Denis Gales]()
-- [Rafael Bechelli]()
+- [Denis Gales](https://github.com/DenisGalesNeves)
 
 O **Bom Prato** é um sistema de pedidos de restaurante desenvolvido para otimizar e simplificar o processo de pedidos e entregas para clientes e funcionários. Com uma interface intuitiva e amigável, os clientes podem fazer pedidos. Por outro lado, os funcionários do restaurante têm acesso a uma interface de gerenciamento robusta, onde podem monitorar os pedidos.
 
 ## Tecnologias Utilizadas
 
-- **BackEnd**: Java com SpringBoot
-  - O SpringBoot proporciona uma estrutura robusta e eficiente para o desenvolvimento do back-end do sistema, oferecendo recursos como injeção de dependência, controle transacional e segurança.
-- **FrontEnd**: Next.js
-  - O Next.js é uma estrutura de desenvolvimento front-end React com funcionalidades avançadas, como renderização do lado do servidor e geração de páginas estáticas, garantindo uma experiência de usuário rápida e responsiva.
+### **BackEnd**
+
+- **mysql-connector-java**
+
+  - **GroupID:** mysql
+  - **ArtifactID:** mysql-connector-java
+
+- **spring-boot-starter-web**
+
+  - **GroupID:** org.springframework.boot
+  - **ArtifactID:** spring-boot-starter-web
+
+- **spring-boot-devtools**
+
+  - **GroupID:** org.springframework.boot
+  - **ArtifactID:** spring-boot-devtools
+  - **Scope:** runtime
+  - **Optional:** true
+
+- **lombok**
+
+  - **GroupID:** org.projectlombok
+  - **ArtifactID:** lombok
+  - **spring-boot-starter-test**
+    - **GroupID:** org.springframework.boot
+    - **ArtifactID:** spring-boot-starter-test
+    - **Scope:** test
+  - **spring-boot-starter-data-jpa**
+    - **GroupID:** org.springframework.boot
+    - **ArtifactID:** spring-boot-starter-data-jpa
+  - **springdoc-openapi-starter-webmvc-ui**
+    - **GroupID:** org.springdoc
+    - **ArtifactID:** springdoc-openapi-starter-webmvc-ui
+
+- ### **FrontEnd**
+
+  - **@hookform/resolvers**
+  - **@tanstack/react-query**
+  - **axios**
+  - **class-variance-authority**
+  - **clsx**
+  - **react**
+  - **react-dom**
+  - **react-hook-form**
+  - **sonner**
+  - **tailwind-merge**
+  - **tailwindcss-animate**
+  - **use-mask-input**
+  - **zod**
+  - **ShadUI**
 
 ## Regras de Negócio
 
