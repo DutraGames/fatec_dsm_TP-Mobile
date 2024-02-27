@@ -1,13 +1,12 @@
 "use client";
 import { Button } from "../ui/button";
 import { z } from "zod";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/services/api";
 import { toast } from "sonner";
 import { queryClient } from "@/services/QueryClient";
 import { useQuery } from "@tanstack/react-query";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   DialogFooter,
   Dialog,
@@ -33,7 +32,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const pedidoCreateSchema = z.object({
+const pedidoUpdateSchema = z.object({
+  id: z.number(),
   reserva: z.enum(["sim", "nao"], {
     required_error: "Escolha se deseja realizar uma reserva",
   }),
@@ -49,37 +49,53 @@ interface PratoProps {
 }
 
 interface PedidoProps {
-  id: number;
-  pratos: PratoProps[];
-  valorTotal: number;
+  pedido: {
+    id: number;
+    pratos: PratoProps[];
+    valorTotal: number;
+  };
 }
 
-type PedidoCreateSchema = z.infer<typeof pedidoCreateSchema>;
+type PedidoUpdateSchema = z.infer<typeof pedidoUpdateSchema>;
 
-export const ActionPedido = (props: PedidoProps) => {
-  const form = useForm<PedidoCreateSchema>({
-    resolver: zodResolver(pedidoCreateSchema),
+export const ActionPedido = ({ pedido }: PedidoProps) => {
+  const form = useForm<PedidoUpdateSchema>({
+    resolver: zodResolver(pedidoUpdateSchema),
   });
+
+  const getPratos = async () => {
+    const response: { data: PratoProps[] } = await api.get("/prato");
+    return response.data;
+  };
 
   const getPedidos = async () => {
     const response: { data: PedidoProps[] } = await api.get("/pedidos");
     return response.data;
   };
 
-  const { data } = useQuery({
-    queryKey: ["pedidos"],
-    queryFn: getPedidos,
+  const { data: pratos } = useQuery({
+    queryKey: ["pratos"],
+    queryFn: getPratos,
   });
 
   const handleDeletePedido = async (id: number) => {
     await api.delete(`/pedidos/${id}`);
     queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+    toast.success("Pedido deletado");
+  };
+
+  const handleUpdatePedido = async (data: PedidoUpdateSchema) => {
+    await api.put(`/pedidos/${data.id}`, data.pratos);
+    queryClient.invalidateQueries({ queryKey: ["pedidos"] });
+    toast.success("Pedido Atualizado");
+  };
 
   return (
     <Dialog>
       <Button
+        type="button"
         variant="destructive"
-        onClick={() => handleDeletePedido(props.id)}
+        onClick={() => handleDeletePedido(pedido.id)}
       >
         Deletar
       </Button>
@@ -87,30 +103,58 @@ export const ActionPedido = (props: PedidoProps) => {
         Editar
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent className="text-zinc-950">
         <DialogHeader>
-          <DialogTitle>Editar Prato</DialogTitle>
-          <DialogDescription>Edite os dados do prato</DialogDescription>
+          <DialogTitle>Editar Pedido</DialogTitle>
+          <DialogDescription>Edite os dados do pedido</DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
           <form
-            onSubmit={handleSubmit(handleUpdatePrato)}
-            className="flex flex-col gap-2"
+            className="space-y-3"
+            onSubmit={form.handleSubmit(handleUpdatePedido)}
           >
-            <Label>Nome</Label>
-            <Input {...register("nome")} placeholder="Macarrão" />
-            <p className="text-xs text-primary">{errors.nome?.message}</p>
-            <Label>Preço</Label>
-            <Input
-              {...registerWithMask("preco", ["999.99"], {
-                required: true,
-              })}
-              placeholder="R$ 12.00"
+            <FormField
+              control={form.control}
+              name="pratos"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Selecione os pratos</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione os pratos do seu pedido" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {pratos?.map((prato: PratoProps) => (
+                        <SelectItem
+                          key={prato.id}
+                          value={JSON.stringify([
+                            {
+                              id: prato.id,
+                              nome: prato.nome,
+                              preco: prato.preco,
+                            },
+                          ])}
+                        >
+                          {prato.nome} - R$ {prato.preco.toFixed(2)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-            <p className="text-xs text-primary">{errors.preco?.message}</p>
+
             <DialogFooter>
               <Button type="submit">Salvar</Button>
             </DialogFooter>
           </form>
-        </DialogHeader>
+        </Form>
       </DialogContent>
     </Dialog>
   );
