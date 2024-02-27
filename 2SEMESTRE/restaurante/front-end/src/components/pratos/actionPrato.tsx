@@ -71,7 +71,7 @@ export const ActionPrato = ({ prato }: PratoProps) => {
         Editar
       </DialogTrigger>
 
-      <DialogContent>
+      <DialogContent className="text-zinc-950">
         <DialogHeader>
           <DialogTitle>Editar Prato</DialogTitle>
           <DialogDescription>Edite os dados do prato</DialogDescription>

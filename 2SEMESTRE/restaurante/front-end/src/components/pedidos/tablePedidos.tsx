@@ -1,6 +1,5 @@
 "use client";
 import { TableBody, TableCell, TableRow } from "../ui/table";
-//import { ActionPrato } from "./actionPrato";
 import { api } from "@/services/api";
 import { useQuery } from "@tanstack/react-query";
 import { ActionPedido } from "./actionPedido";
@@ -20,7 +19,6 @@ interface PedidoProps {
 export const TablePedidos = () => {
   const getPedidos = async () => {
     const response: { data: PedidoProps[] } = await api.get("/pedidos");
-    console.log(response.data);
 
     return response.data;
   };
