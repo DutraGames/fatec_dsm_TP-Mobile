@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import restaurant.com.restaurante.dto.CreatePratoDTO;
 import restaurant.com.restaurante.entities.PratoEntity;
 import restaurant.com.restaurante.repository.PratoRepository;
 
@@ -47,14 +48,15 @@ public class PratoController {
     summary = "Cria um novo prato",
     description = "Cria um novo prato no sistema"
   )
-  @Parameter(
-    name = "prato",
-    description = "Prato a ser criado",
-    required = true
-  )
+  @Parameter(name = "nome", description = "Nome do prato", required = true)
+  @Parameter(name = "preco", description = "Preço do prato", required = true)
   @PostMapping
-  public PratoEntity criarPrato(@RequestBody PratoEntity prato) {
-    return pratoRepository.save(prato);
+  public PratoEntity criarPrato(@RequestBody CreatePratoDTO prato) {
+    PratoEntity pratoEntity = new PratoEntity();
+    pratoEntity.setNome(prato.getNome());
+    pratoEntity.setPreco(prato.getPreco());
+
+    return pratoRepository.save(pratoEntity);
   }
 
   @Operation(
@@ -62,10 +64,12 @@ public class PratoController {
     description = "Atualiza um prato no sistema"
   )
   @Parameter(name = "id", description = "Id do prato", required = true)
+  @Parameter(name = "nome", description = "Nome do prato", required = true)
+  @Parameter(name = "preco", description = "Preço do prato", required = true)
   @PutMapping("/{id}")
   public PratoEntity atualizarPrato(
     @PathVariable int id,
-    @RequestBody PratoEntity pratoNovo
+    @RequestBody CreatePratoDTO pratoNovo
   ) {
     PratoEntity pratoAtual = pratoRepository.findById(id).get();
 
