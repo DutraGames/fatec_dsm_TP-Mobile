@@ -1,62 +1,59 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+"use client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+const loginSchema = z.object({
+  nome: z.string().min(3, { message: "Nome muito curto" }),
+  senha: z.string().min(3, { message: "Senha muito curta" }),
+});
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+type LoginProps = z.infer<typeof loginSchema>;
 
-import { FormCreatePedidos } from "@/components/pedidos/formCreatePedido";
-import { TablePedidos } from "@/components/pedidos/tablePedidos";
+export default function HomePage() {
+  const { register, handleSubmit } = useForm<LoginProps>({
+    resolver: zodResolver(loginSchema),
+  });
 
-export default function Home() {
+  const { push } = useRouter();
+
+  const handleLogin = (data: LoginProps) => {
+    if (data.nome === "admin" && data.senha === "admin") {
+      push("/dashboard");
+    }
+  };
+
   return (
-    <div className="flex flex-col">
-      <Dialog>
-        <header className="flex items-center justify-between p-4 border-b-2 border-secondary/10">
-          <h1 className="text-2xl font-bold">Bom Prato</h1>
+    <main className="flex flex-col h-screen w-full">
+      <header className="flex items-center justify-between p-4 border-b-2 border-secondary/10 w-full">
+        <h1 className="text-2xl font-bold">Bom Prato</h1>
+      </header>
 
-          <DialogTrigger className="rounded-md bg-primary p-2 font-bold hover:bg-primary/80 transition-all">
-            Adicionar Pedido
-          </DialogTrigger>
-        </header>
+      <section className="flex flex-col items-center justify-center size-full">
+        <form
+          className="border-2 border-secondary/10 rounded-lg p-8 space-y-2"
+          onSubmit={handleSubmit(handleLogin)}
+        >
+          <h2 className="text-xl font-bold mb-4">Seja bem-vindo ao sistema</h2>
 
-        <main className="mt-10 mx-40">
-          <Table className="w-full">
-            <TableCaption>Seus Pratos Cadastrados</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px] text-center">
-                  número do pedido
-                </TableHead>
-                <TableHead>pedido</TableHead>
-                <TableHead className="w-[100px]">preço total</TableHead>
-                <TableHead className="w-[100px]">Ações</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TablePedidos />
-          </Table>
-        </main>
+          <Label>Usuário</Label>
+          <Input placeholder="Seu nome" {...register("nome")} />
 
-        <DialogContent className="text-zinc-950">
-          <DialogHeader>
-            <DialogTitle>Adicionar Pedido</DialogTitle>
-            <DialogDescription>Preencha os dados do Pedido</DialogDescription>
-          </DialogHeader>
-          <FormCreatePedidos />
-        </DialogContent>
-      </Dialog>
-    </div>
+          <Label>Senha</Label>
+          <Input
+            type="password"
+            placeholder="Sua senha"
+            {...register("senha")}
+          />
+
+          <Button type="submit" className="w-full">
+            Entrar
+          </Button>
+        </form>
+      </section>
+    </main>
   );
 }
