@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "../ui/button";
 import { z } from "zod";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "@/services/api";
 import { toast } from "sonner";
@@ -16,35 +16,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Label } from "@radix-ui/react-label";
+
+const pratoSchema = z.object({
+  id: z.number(),
+  nome: z.string(),
+  preco: z.number(),
+});
 
 const pedidoCreateSchema = z.object({
-  reserva: z.enum(["sim", "nao"], {
+  tipo: z.enum(["reserva", "entrega"], {
     required_error: "Escolha se deseja realizar uma reserva",
   }),
-  pratos: z.string({
-    required_error: "Selecione ao menos um prato",
+  pratos: z.array(pratoSchema).min(1, {
+    message: "Selecione pelo menos um prato",
   }),
 });
 
-interface PratoProps {
-  id: number;
-  nome: string;
-  preco: number;
-}
+type PratoProps = z.infer<typeof pratoSchema>;
 
 type PedidoCreateSchema = z.infer<typeof pedidoCreateSchema>;
 
 export const FormCreatePedidos = () => {
-  const form = useForm<PedidoCreateSchema>({
+  const { handleSubmit, control, register } = useForm<PedidoCreateSchema>({
     resolver: zodResolver(pedidoCreateSchema),
+    mode: "all",
+  });
+
+  const { append, fields, remove } = useFieldArray({
+    control,
+    name: "pratos",
   });
 
   const getPratos = async () => {
@@ -58,7 +59,7 @@ export const FormCreatePedidos = () => {
   });
 
   const handleAddPedido = async (data: PedidoCreateSchema) => {
-    if (data.reserva === "sim") {
+    if (data.tipo === "reserva") {
       const mesaData = {
         numero: Math.floor(Math.random() * 5000),
       };
@@ -67,83 +68,94 @@ export const FormCreatePedidos = () => {
       queryClient.invalidateQueries({ queryKey: ["mesas"] });
     }
 
-    await api.post("/pedidos", JSON.parse(data.pratos));
+    await api.post("/pedidos", data.pratos);
     queryClient.invalidateQueries({ queryKey: ["pedidos"] });
     toast.success("Pedido adicionado");
+
+    console.log(data);
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(handleAddPedido)} className="space-y-3">
-        <FormField
-          control={form.control}
-          name="reserva"
-          render={({ field }) => (
-            <FormItem className="space-y-3">
-              <FormLabel>Deseja realizar uma reserva</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex"
-                >
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="nao" />
-                    </FormControl>
-                    <FormLabel className="font-normal">Não</FormLabel>
-                  </FormItem>
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="sim" />
-                    </FormControl>
-                    <FormLabel className="font-normal">Sim</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <form onSubmit={handleSubmit(handleAddPedido)} className="space-y-3">
+      <Label>Tipo de Pedido</Label>
+      <Controller
+        control={control}
+        name="tipo"
+        defaultValue="reserva"
+        render={({ field: { onChange, value } }) => {
+          return (
+            <RadioGroup
+              className="flex items-center"
+              onValueChange={onChange}
+              value={value}
+            >
+              <RadioGroupItem value="reserva" id="reserva" />
+              <Label htmlFor="reserva">Reserva de mesa</Label>
+              <RadioGroupItem value="entrega" id="entrega" />
+              <Label htmlFor="entrega">Entrega</Label>
+            </RadioGroup>
+          );
+        }}
+      />
 
-        <FormField
-          control={form.control}
-          name="pratos"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Selecione os pratos</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione os pratos do seu pedido" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {data?.map((prato: PratoProps) => (
-                    <SelectItem
-                      key={prato.id}
-                      value={JSON.stringify([
-                        {
-                          id: prato.id,
-                          nome: prato.nome,
-                          preco: prato.preco,
-                        },
-                      ])}
+      <Controller
+        control={control}
+        name="pratos"
+        render={({ field: { onChange, value } }) => {
+          return (
+            <div className="flex flex-col gap-2">
+              <Label>Selecione os pratos</Label>
+              {fields.map((field, index) => {
+                return (
+                  <div key={field.id} className="flex items-center gap-2">
+                    <Select
+                      value={JSON.stringify(value[index])}
+                      onValueChange={(selectedOption) => {
+                        const updatedValue = [...value];
+                        updatedValue[index] = JSON.parse(selectedOption);
+                        onChange(updatedValue);
+                      }}
                     >
-                      {prato.nome} - R$ {prato.preco.toFixed(2)}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Selecione um prato" />
+                      </SelectTrigger>
+                      <SelectContent onChange={onChange}>
+                        {data?.map((prato: PratoProps) => (
+                          <SelectItem
+                            key={prato.id}
+                            value={JSON.stringify(prato)}
+                          >
+                            {prato.nome} - R$ {prato.preco.toFixed(2)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
 
-        <DialogFooter>
-          <Button type="submit">Adicionar</Button>
-        </DialogFooter>
-      </form>
-    </Form>
+                    <Button
+                      type="button"
+                      onClick={() => remove(index)}
+                      variant="destructive"
+                    >
+                      Remover
+                    </Button>
+                  </div>
+                );
+              })}
+
+              <Button
+                type="button"
+                onClick={() => append({ id: 0, nome: "", preco: 0 })}
+              >
+                Adicionar
+              </Button>
+            </div>
+          );
+        }}
+      />
+
+      <DialogFooter>
+        <Button type="submit">Criar Pedido</Button>
+      </DialogFooter>
+    </form>
   );
 };
