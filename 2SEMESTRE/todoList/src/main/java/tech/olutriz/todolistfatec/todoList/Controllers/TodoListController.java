@@ -2,6 +2,7 @@ package tech.olutriz.todolistfatec.todoList.Controllers;
 
 import java.util.List;
 import java.util.Set;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +23,10 @@ public class TodoListController {
   @GetMapping("/get")
   public List<String> getTodos() {
     return jedisClient.getTodos();
+  }
+
+  @DeleteMapping("/delete")
+  public String deleteTodo() {
+    return jedisClient.deleteTodo("{" + "\"0\"");
   }
 }

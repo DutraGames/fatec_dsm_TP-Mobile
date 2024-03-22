@@ -27,6 +27,12 @@ public class JedisClient {
     return jedis.mget(keysArray);
   }
 
+  public String deleteTodo(String id) {
+    jedis.del(id);
+
+    return "Deletado";
+  }
+
   public void close() {
     jedis.close();
   }
