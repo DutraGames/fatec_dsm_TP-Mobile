@@ -1,6 +1,7 @@
 package br.com.testemail.marketing.EmailSend;
 
 import br.com.testemail.marketing.EmailSend.API.model.Comment;
+import br.com.testemail.marketing.EmailSend.API.model.Email;
 import br.com.testemail.marketing.EmailSend.API.services.ConsomeAPI;
 import br.com.testemail.marketing.EmailSend.API.services.ConvertData;
 import java.util.ArrayList;
@@ -24,9 +25,13 @@ public class EmailSendApplication implements CommandLineRunner {
     );
     ConvertData convertData = new ConvertData();
     List<Comment> comments = new ArrayList<>();
+    List<Email> emails = new ArrayList<>();
 
     comments = convertData.convertData(json, Comment.class);
+    emails = convertData.convertData(json, Email.class);
 
     comments.stream().forEach(System.out::println);
+    System.out.println("-------------------------------------");
+    emails.stream().forEach(System.out::println);
   }
 }
