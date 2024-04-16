@@ -1,5 +1,7 @@
 package br.com.testemail.marketing.EmailSend.API.interfaces;
 
+import java.util.List;
+
 public interface IConvertData<T> {
-  public T convertData(String json, Class<T> classe);
+  public List<T> convertData(String json, Class<T> classe);
 }
