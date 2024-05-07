@@ -39,6 +39,7 @@ public class Department {
   }
 
   public void setEmployees(Employee employees) {
+    employees.setDepartment(this);
     this.employees.add(employees);
   }
 
