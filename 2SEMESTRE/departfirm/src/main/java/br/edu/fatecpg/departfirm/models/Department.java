@@ -1,6 +1,8 @@
 package br.edu.fatecpg.departfirm.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,7 +19,11 @@ public class Department {
 
   private String name;
 
-  @OneToMany(mappedBy = "department")
+  @OneToMany(
+    mappedBy = "department",
+    cascade = CascadeType.ALL,
+    fetch = FetchType.EAGER
+  )
   private List<Employee> employees = new ArrayList<>();
 
   public Department() {}
