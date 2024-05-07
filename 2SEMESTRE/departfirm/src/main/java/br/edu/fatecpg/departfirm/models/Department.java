@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Department {
@@ -13,6 +16,9 @@ public class Department {
   private long id;
 
   private String name;
+
+  @OneToMany(mappedBy = "department")
+  private List<Employee> employees = new ArrayList<>();
 
   public Department() {}
 
@@ -26,5 +32,27 @@ public class Department {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public List<Employee> getEmployees() {
+    return employees;
+  }
+
+  public void setEmployees(Employee employees) {
+    this.employees.add(employees);
+  }
+
+  @Override
+  public String toString() {
+    return (
+      "Department [id=" +
+      id +
+      ", name=" +
+      name +
+      ", employees=" +
+      employees +
+      "" +
+      "]"
+    );
   }
 }
