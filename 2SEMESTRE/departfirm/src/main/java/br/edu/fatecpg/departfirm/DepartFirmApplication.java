@@ -4,6 +4,7 @@ import br.edu.fatecpg.departfirm.models.Department;
 import br.edu.fatecpg.departfirm.models.Employee;
 import br.edu.fatecpg.departfirm.repositories.DepartmentRepository;
 import br.edu.fatecpg.departfirm.repositories.EmployeeRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,14 +28,10 @@ public class DepartFirmApplication implements CommandLineRunner {
     Employee employee = new Employee("Joao");
     Department department = new Department("Informatica");
 
-    //departmentRepository.save(department);
-    /* employee.setDepartment(department); */
-    //employeeRepository.save(employee);
-    /* department.setEmployees(employee);
-    departmentRepository.save(department); */
+    department.setEmployees(employee);
 
-    System.out.println(employeeRepository.findAll());
-    System.out.println("----------------------------");
-    System.out.println(departmentRepository.findAll());
+    departmentRepository.save(department);
+    /* List<Department> departments = departmentRepository.findAll();
+    departments.forEach(System.out::println); */
   }
 }
