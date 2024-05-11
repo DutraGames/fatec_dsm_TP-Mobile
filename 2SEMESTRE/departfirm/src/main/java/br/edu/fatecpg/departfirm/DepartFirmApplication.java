@@ -26,7 +26,7 @@ public class DepartFirmApplication implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
     // Geração de dados
-    Employee employee1 = new Employee("Joao");
+    /*     Employee employee1 = new Employee("Joao");
     Department department1 = new Department("Informatica");
     department1.setEmployees(employee1);
     departmentRepository.save(department1);
@@ -44,10 +44,17 @@ public class DepartFirmApplication implements CommandLineRunner {
     Employee employee4 = new Employee("Natalia");
     Department department4 = new Department("Marketing");
     department4.setEmployees(employee4);
-    departmentRepository.save(department4);
+    departmentRepository.save(department4); */
 
     // Listagem de dados
-    List<Department> departments = departmentRepository.findAll();
-    departments.forEach(System.out::println);
+    /* List<Department> departments = departmentRepository.findAll();
+    departments.forEach(System.out::println); */
+
+    // Consulta variada
+    //departmentRepository.findByName("Marketing").forEach(System.out::println);
+
+    departmentRepository
+      .findByEmployeeName("Julia")
+      .forEach(System.out::println);
   }
 }
