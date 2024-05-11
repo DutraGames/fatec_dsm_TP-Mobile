@@ -33,17 +33,17 @@ public class DepartFirmApplication implements CommandLineRunner {
 
     Employee employee2 = new Employee("Marcos");
     Department department2 = new Department("Informatica");
-    department1.setEmployees(employee2);
+    department2.setEmployees(employee2);
     departmentRepository.save(department2);
 
     Employee employee3 = new Employee("Julia");
     Department department3 = new Department("Marketing");
-    department1.setEmployees(employee3);
+    department3.setEmployees(employee3);
     departmentRepository.save(department3);
 
     Employee employee4 = new Employee("Natalia");
     Department department4 = new Department("Marketing");
-    department1.setEmployees(employee4);
+    department4.setEmployees(employee4);
     departmentRepository.save(department4);
 
     // Listagem de dados
