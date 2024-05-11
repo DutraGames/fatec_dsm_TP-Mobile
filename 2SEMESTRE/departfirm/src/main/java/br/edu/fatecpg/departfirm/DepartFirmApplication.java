@@ -25,13 +25,29 @@ public class DepartFirmApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    Employee employee = new Employee("Joao");
-    Department department = new Department("Informatica");
+    // Geração de dados
+    Employee employee1 = new Employee("Joao");
+    Department department1 = new Department("Informatica");
+    department1.setEmployees(employee1);
+    departmentRepository.save(department1);
 
-    department.setEmployees(employee);
+    Employee employee2 = new Employee("Marcos");
+    Department department2 = new Department("Informatica");
+    department1.setEmployees(employee2);
+    departmentRepository.save(department2);
 
-    departmentRepository.save(department);
-    /* List<Department> departments = departmentRepository.findAll();
-    departments.forEach(System.out::println); */
+    Employee employee3 = new Employee("Julia");
+    Department department3 = new Department("Marketing");
+    department1.setEmployees(employee3);
+    departmentRepository.save(department3);
+
+    Employee employee4 = new Employee("Natalia");
+    Department department4 = new Department("Marketing");
+    department1.setEmployees(employee4);
+    departmentRepository.save(department4);
+
+    // Listagem de dados
+    List<Department> departments = departmentRepository.findAll();
+    departments.forEach(System.out::println);
   }
 }
