@@ -25,23 +25,26 @@ public class DepartFirmApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
+    // Limpeza de dados
+    //departmentRepository.deleteAll();
+
     // Geração de dados
-    /*     Employee employee1 = new Employee("Joao");
+    /* Employee employee1 = new Employee("Joao", 2000.0);
     Department department1 = new Department("Informatica");
     department1.setEmployees(employee1);
     departmentRepository.save(department1);
 
-    Employee employee2 = new Employee("Marcos");
+    Employee employee2 = new Employee("Marcos", 2500.0);
     Department department2 = new Department("Informatica");
     department2.setEmployees(employee2);
     departmentRepository.save(department2);
 
-    Employee employee3 = new Employee("Julia");
+    Employee employee3 = new Employee("Julia", 3000.0);
     Department department3 = new Department("Marketing");
     department3.setEmployees(employee3);
     departmentRepository.save(department3);
 
-    Employee employee4 = new Employee("Natalia");
+    Employee employee4 = new Employee("Natalia", 1500.0);
     Department department4 = new Department("Marketing");
     department4.setEmployees(employee4);
     departmentRepository.save(department4); */
@@ -49,12 +52,16 @@ public class DepartFirmApplication implements CommandLineRunner {
     // Listagem de dados
     /* List<Department> departments = departmentRepository.findAll();
     departments.forEach(System.out::println); */
-
     // Consulta variada
     //departmentRepository.findByName("Marketing").forEach(System.out::println);
 
-    departmentRepository
+    /* departmentRepository
       .findByEmployeeName("Julia")
+      .forEach(System.out::println); */
+
+    //JPQL
+    departmentRepository
+      .findEmployeesWithSalaryGreaterThanInDepartment(1000, "Informatica")
       .forEach(System.out::println);
   }
 }
