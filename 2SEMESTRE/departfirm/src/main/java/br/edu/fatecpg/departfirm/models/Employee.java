@@ -42,15 +42,6 @@ public class Employee {
 
   @Override
   public String toString() {
-    return (
-      "Employee [id=" +
-      id +
-      ", name=" +
-      name +
-      ", department=" +
-      department +
-      "" +
-      "]"
-    );
+    return ("Employee [id=" + id + ", name=" + name + "]");
   }
 }
