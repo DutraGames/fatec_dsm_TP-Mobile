@@ -15,13 +15,16 @@ public class Employee {
 
   private String name;
 
+  private double salary;
+
   @ManyToOne
   private Department department;
 
   public Employee() {}
 
-  public Employee(String name) {
+  public Employee(String name, double salary) {
     this.name = name;
+    this.salary = salary;
   }
 
   public String getName() {
@@ -30,6 +33,14 @@ public class Employee {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  public double getSalary() {
+    return salary;
+  }
+
+  public void setSalary(double salary) {
+    this.salary = salary;
   }
 
   public Department getDepartment() {
@@ -42,6 +53,8 @@ public class Employee {
 
   @Override
   public String toString() {
-    return ("Employee [id=" + id + ", name=" + name + "]");
+    return (
+      "Employee [id=" + id + ", name=" + name + " salary=" + salary + "]"
+    );
   }
 }
