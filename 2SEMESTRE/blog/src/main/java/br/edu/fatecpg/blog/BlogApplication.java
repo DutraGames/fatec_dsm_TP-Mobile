@@ -36,6 +36,17 @@ public class BlogApplication implements CommandLineRunner {
     postRepository.save(post1);
     postRepository.save(post2);
  */
+
+    System.out.println("------------------------------------------");
+
+    System.out.println("All Posts: ");
     postRepository.findAll().forEach(System.out::println);
+
+    System.out.println("------------------------------------------");
+
+    System.out.println("Post for title: ");
+    System.out.println(postRepository.findByTitle("Post 1"));
+
+    System.out.println("------------------------------------------");
   }
 }
