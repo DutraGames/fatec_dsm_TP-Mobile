@@ -48,5 +48,10 @@ public class BlogApplication implements CommandLineRunner {
     System.out.println(postRepository.findByTitle("Post 1"));
 
     System.out.println("------------------------------------------");
+
+    System.out.println("Post for keyword: ");
+    postRepository.findByKeyword("Content").forEach(System.out::println);
+
+    System.out.println("------------------------------------------");
   }
 }
