@@ -1,5 +1,6 @@
 package br.edu.fatecpg.catalog.models;
 
+import br.edu.fatecpg.catalog.enums.CategoryType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +18,7 @@ public class Category {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  private String name;
+  private CategoryType type;
 
   @OneToMany(
     mappedBy = "category",
@@ -28,16 +29,16 @@ public class Category {
 
   public Category() {}
 
-  public Category(String name) {
-    this.name = name;
+  public Category(CategoryType type) {
+    this.type = type;
   }
 
-  public String getName() {
-    return name;
+  public CategoryType getType() {
+    return type;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setType(CategoryType type) {
+    this.type = type;
   }
 
   public List<Product> getProducts() {
@@ -51,8 +52,6 @@ public class Category {
 
   @Override
   public String toString() {
-    return (
-      "Category [id=" + id + ", name=" + name + ", products=" + products + "]"
-    );
+    return "Category [id=" + id + ", type=" + type + "]";
   }
 }
