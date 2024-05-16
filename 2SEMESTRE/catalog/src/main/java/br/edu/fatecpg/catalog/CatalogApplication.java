@@ -43,5 +43,18 @@ public class CatalogApplication implements CommandLineRunner {
     categoryRepository.findAll().forEach(System.out::println);
 
     System.out.println("--------------------------------------------------");
+
+    System.out.println("All Products for category: ");
+
+    categoryRepository
+      .findByType(CategoryType.GAMES)
+      .forEach(System.out::println);
+
+    System.out.println("--------------------------------------------------");
+
+    System.out.println("All Products for category starting with: ");
+
+    categoryRepository.findByTypeStartingWith("G").forEach(System.out::println);
+    System.out.println("--------------------------------------------------");
   }
 }
