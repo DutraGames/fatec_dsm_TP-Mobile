@@ -1,5 +1,6 @@
 package br.edu.fatecpg.catalog;
 
+import br.edu.fatecpg.catalog.enums.CategoryType;
 import br.edu.fatecpg.catalog.models.Category;
 import br.edu.fatecpg.catalog.models.Product;
 import br.edu.fatecpg.catalog.repositories.CategoryRepository;
@@ -20,8 +21,8 @@ public class CatalogApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) throws Exception {
-    /*     Category category = new Category("Smartphones");
-    Category category2 = new Category("Games");
+    /* Category category = new Category(CategoryType.SMARTPHONES);
+    Category category2 = new Category(CategoryType.GAMES);
 
     Product product = new Product("iPhone 14", 3500.0);
     Product product2 = new Product("Xiaomi 12s", 1600.0);
