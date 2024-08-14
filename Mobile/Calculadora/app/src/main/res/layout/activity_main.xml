@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="24sp"
+        android:text="Calculadora básica"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
+
+    <EditText
+        android:id="@+id/edtNum1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Digite o primeiro número"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="114dp" />
+
+    <EditText
+        android:id="@+id/edtNum2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Digite o segundo número"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/edtNum1"
+        tools:layout_editor_absoluteX="112dp" />
+
+    <Button
+        android:id="@+id/adicao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adição"
+        app:layout_constraintTop_toBottomOf="@+id/edtNum2"
+        tools:layout_editor_absoluteX="114dp" />
+
+    <Button
+        android:id="@+id/subtracao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subtração"
+        app:layout_constraintTop_toBottomOf="@+id/adicao"
+        tools:layout_editor_absoluteX="203dp" />
+
+    <Button
+        android:id="@+id/multiplicacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiplicação"
+        app:layout_constraintTop_toBottomOf="@+id/subtracao"
+        tools:layout_editor_absoluteX="135dp" />
+
+    <Button
+        android:id="@+id/divisao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Divisão"
+        app:layout_constraintTop_toBottomOf="@+id/multiplicacao"
+        tools:layout_editor_absoluteX="193dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
