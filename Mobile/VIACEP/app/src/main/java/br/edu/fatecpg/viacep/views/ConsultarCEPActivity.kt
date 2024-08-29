@@ -17,15 +17,15 @@ class ConsultarCEPActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consultar_cepactivity)
 
+
+
         val enderecoDao = EnderecoDao()
         val edtCEP = findViewById<EditText>(R.id.edt_CEP)
         val btnSave = findViewById<Button>(R.id.btn_save)
         val fabTrans = findViewById<FloatingActionButton>(R.id.fab_trans)
 
         btnSave.setOnClickListener(){
-
             enderecoDao.ConsultarEndereco(edtCEP.text.toString())
-
         }
 
         fabTrans.setOnClickListener(){
