@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -25,7 +26,18 @@ class ConsultarCEPActivity : AppCompatActivity() {
         val fabTrans = findViewById<FloatingActionButton>(R.id.fab_trans)
 
         btnSave.setOnClickListener(){
-            enderecoDao.ConsultarEndereco(edtCEP.text.toString())
+            if(edtCEP.text.toString() == ""){
+                Toast.makeText(this, "Preencha o campo por favor!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if(edtCEP.length() < 8){
+                Toast.makeText(this, "Digite um o CEP todo!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            enderecoDao.ConsultarEndereco(this, edtCEP.text.toString())
+
         }
 
         fabTrans.setOnClickListener(){
