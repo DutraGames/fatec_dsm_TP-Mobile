@@ -5,5 +5,5 @@ import br.edu.fatecpg.viacep.models.Endereco
 
 interface IEndereco {
     fun ConsultarEndereco(context: Context, cep:String)
-    fun DevolverEndereco():Endereco
+    fun DevolverEndereco():List<Endereco>
 }

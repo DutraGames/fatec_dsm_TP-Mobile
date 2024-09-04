@@ -1,12 +1,16 @@
 package br.edu.fatecpg.viacep.views
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import br.edu.fatecpg.viacep.R
+import br.edu.fatecpg.viacep.adapater.EnderecoAdapter
 import br.edu.fatecpg.viacep.dao.EnderecoDao
 import br.edu.fatecpg.viacep.models.Endereco
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,18 +21,16 @@ class ResultadoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_resultado)
 
         val enderecoDao = EnderecoDao()
-        val endereco:Endereco = enderecoDao.DevolverEndereco()
+        val rvLista = findViewById<RecyclerView>(R.id.rv_lista)
 
-        val txtCep = findViewById<TextView>(R.id.txt_cep)
-        val txtLogadouro = findViewById<TextView>(R.id.txt_long)
-        val txtBairro = findViewById<TextView>(R.id.txt_bairro)
-        val txtLocalidade = findViewById<TextView>(R.id.txt_local)
+        val enderecos = enderecoDao.DevolverEndereco()
+
+        rvLista.adapter = EnderecoAdapter(enderecos)
+        rvLista.layoutManager = LinearLayoutManager(this)
+
+
         val fabClose = findViewById<FloatingActionButton>(R.id.fab_close)
 
-        txtCep.text = "CEP: ${endereco.cep}"
-        txtLogadouro.text = "Rua: ${endereco.logradouro}"
-        txtBairro.text = "Bairro: ${endereco.bairro}"
-        txtLocalidade.text = "Cidade: ${endereco.localidade}"
 
         fabClose.setOnClickListener(){
             finish()

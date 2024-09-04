@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class EnderecoDao :IEndereco {
 
     companion object {
-        private var endereco:Endereco? = null
+        private val enderecos:MutableList<Endereco> = mutableListOf()
     }
 
     private val retrofit = Retrofit.Builder()
@@ -31,11 +31,10 @@ class EnderecoDao :IEndereco {
                         if(resposta.isSuccessful){
                             val end = resposta.body()
                             if (end != null && !end.cep.isNullOrEmpty()) {
-                                endereco = end
+                                enderecos.add(end)
                                 Toast.makeText(context, "CEP Localizado!", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(context, "CEP inválido!", Toast.LENGTH_SHORT).show()
-                                endereco = null
+                            }else{
+                                Toast.makeText(context, "CEP Inválido!", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -48,8 +47,8 @@ class EnderecoDao :IEndereco {
 
     }
 
-    override fun DevolverEndereco(): Endereco {
+    override fun DevolverEndereco(): List<Endereco> {
         println("Retonou os dados!")
-        return Companion.endereco?:Endereco()
+        return enderecos
     }
 }
