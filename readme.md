@@ -4,4 +4,10 @@ Esse repositório contém as atividades das disciplinas Técnicas de Programa�
 
 Pode ver todas as atividades passadas por ele nesse repositório.
 
+| Disciplina                 | Atividade                                     |
+| -------------------------- | --------------------------------------------- |
+| Técnicas de Programação I  | [Atividades](Tecnicas_Programacao/1SEMETRE/)  |
+| Técnicas de Programação II | [Atividades](Tecnicas_Programacao/2SEMESTRE/) |
+| Dispositivos Móveis I      | [Atividades](Mobile/)                         |
+
 A [Fatec PG](https://fatecpg.edu.br/), oferece os cursos supiores tecnológicos.
