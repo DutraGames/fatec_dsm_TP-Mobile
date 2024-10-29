@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "586797771784",
+    "project_id": "appfatec-fdced",
+    "storage_bucket": "appfatec-fdced.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586797771784:android:30a052f17bbd73e70cf5bd",
+        "android_client_info": {
+          "package_name": "br.edu.fatecpg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgza9JSi0DHh35a0ED6s9PCaVhSCcgpT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586797771784:android:c17701f6130934a60cf5bd",
+        "android_client_info": {
+          "package_name": "br.edu.fatecpg.appfatec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgza9JSi0DHh35a0ED6s9PCaVhSCcgpT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586797771784:android:ad1f7b9a84330edd0cf5bd",
+        "android_client_info": {
+          "package_name": "br.edu.fatepg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgza9JSi0DHh35a0ED6s9PCaVhSCcgpT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
