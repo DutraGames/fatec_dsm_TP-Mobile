@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1015092491501",
+    "project_id": "clinica-66bc7",
+    "storage_bucket": "clinica-66bc7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015092491501:android:9a122a2125e181927988e4",
+        "android_client_info": {
+          "package_name": "br.edu.fatecpg.clinica"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAre46vAMycMWKNWa2VC2aZDL8D9HQdQPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

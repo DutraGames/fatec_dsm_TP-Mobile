@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:minHeight="48dp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/cpfCnpjReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CPF/CNPJ"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/nomeReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome Completo"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/senhaReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:minHeight="48dp" />
+
+    <RadioGroup
+        android:id="@+id/rad_grupo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rad_paciente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paciente" />
+
+        <RadioButton
+            android:id="@+id/rad_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Médico" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/cadastro_reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastrar-se" />
+</LinearLayout>
